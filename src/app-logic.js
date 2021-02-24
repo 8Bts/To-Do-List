@@ -5,6 +5,9 @@ const storage = localStorage.getItem('projects')
 
 const app = (() => {
   const update = () => localStorage.setItem('projects', JSON.stringify(storage));
+
+  const getAllProjects = () => storage.slice();
+
   const getProject = (title) => {
     const project = storage.find(element => element.title === title);
     return project || null;
@@ -69,7 +72,10 @@ const app = (() => {
     return project;
   };
 
+  const clearStorage = () => localStorage.clear();
+
   return {
+    getAllProjects,
     getProject,
     addProject,
     addTodo,
@@ -78,6 +84,7 @@ const app = (() => {
     setPriority,
     deleteProject,
     deleteTodo,
+    clearStorage,
   };
 })();
 

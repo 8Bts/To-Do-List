@@ -1,1 +1,23 @@
 .min-height { min-height: 86vh; }
+
+#input-project { 
+  width: 100%;
+  visibility: hidden;
+}
+
+#project-btn:focus {
+  outline-color: transparent;
+  box-shadow: none;
+}
+
+.success-span {
+  position: absolute;
+  color: var(--bs-success);
+  left: 7%;
+}
+
+#addTaskBtn {
+  position: absolute;
+  top: .67em;
+  right: 2em;
+}

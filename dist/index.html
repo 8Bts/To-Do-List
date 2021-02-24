@@ -16,14 +16,17 @@
       <div class="row min-height">
         <div class="col-3 border text-center">
           <h2>Projects</h2>
-          <select class="form-select mt-3">
+          <select id="p-select" class="form-select mt-3">
             <option selected value="0">Default</option>
           </select>
-          <div class="container mt-4">
-            <button class="btn btn-success">Add New</button>
+          <div id="p-add-cont" class="position-relative container mt-4 d-flex p-0 align-items-center">
+            <input id="input-project" class="form-control" type="text" placeholder="Project title">
+            <button type="submit" id="project-btn" class="btn text-info text-nowrap ps-1 pe-0">Create Project</button>
           </div>
         </div>
-        <div class="col-9 border">
+        <div class="col-9 border position-relative">
+          <button id="addTaskBtn" class="btn btn-sm btn-success">New Task</button>
+          <h2 class="text-center m-0">Tasks</h2>
           <ul class="list-group p-3">
             <li class="list-group-item">
               <div class="card border-0">
