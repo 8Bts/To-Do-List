@@ -16,7 +16,7 @@
       <div class="row min-height">
         <div class="col-3 border text-center">
           <h2>Projects</h2>
-          <select id="p-select" class="form-select mt-3">
+          <select id="p-select" class="form-control mt-3">
             <option selected value="0">Default</option>
           </select>
           <div id="p-add-cont" class="position-relative container mt-4 d-flex p-0 align-items-center">
@@ -25,7 +25,7 @@
           </div>
         </div>
         <div class="col-9 border position-relative">
-          <button id="addTaskBtn" class="btn btn-sm btn-success">New Task</button>
+          <button data-toggle="modal" data-target="#newTaskModal" id="addTaskBtn" class="btn btn-sm btn-success">New Task</button>
           <h2 class="text-center m-0">Tasks</h2>
           <ul class="list-group p-3">
             <li class="list-group-item">
@@ -45,6 +45,46 @@
       </div>
     </div>
   </main>
+  <div class="modal fade" id="newTaskModal" tabindex="-1" role="dialog" aria-labelledby="newTaskModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newTaskModal">New task</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="addTaskForm"> 
+            <div class="form-group">
+              <label for="tast-title" class="col-form-label">Title *</label>
+              <input type="text" maxlength="32" class="form-control" id="tast-title" required>
+            </div>
+            <div class="form-group">
+              <label for="task-description" class="col-form-label">Note (optional)</label>
+              <textarea maxlength="128" class="form-control" id="task-description"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="due-date" class="col-form-label">Due-date *</label>
+              <input type="date" class="form-control" id="due-date" required>
+            </div>
+            <div class="form-group">
+              <label for="task-priority" class="col-form-label">Priority</label>
+              <select class="form-control" name="priority" id="task-priority">
+                <option class="text-info" value="1">Optional</option>
+                <option class="text-warning" selected value="2">Important</option>
+                <option class="text-danger" value="3">Urgent</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <input value="Add" type="submit" form="addTaskForm" class="btn btn-primary">
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="./main.js"></script>
 </body>
 </html>

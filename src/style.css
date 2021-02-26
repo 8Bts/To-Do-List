@@ -10,9 +10,8 @@
   box-shadow: none;
 }
 
-.success-span {
+.flash-span {
   position: absolute;
-  color: var(--bs-success);
   left: 7%;
 }
 

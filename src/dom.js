@@ -5,6 +5,10 @@ const dom = (() => {
   const projectInput = document.getElementById('input-project');
   const pSelect = document.getElementById('p-select');
 
+  const dueDateMin = (dateString) => {
+    document.getElementById('due-date').setAttribute('min', dateString);
+  };
+
   const addProjectOption = (title, id) => {
     const opt = document.createElement('option');
     opt.setAttribute('value', id);
@@ -23,7 +27,7 @@ const dom = (() => {
       toggle = false;
       projectInput.style.visibility = 'visible';
       projectBtn.innerHTML = 'OK';
-      const flash = document.getElementById('successSpan');
+      const flash = document.getElementById('flashSpan');
       if (flash) flash.remove();
     } else {
       const input = projectInput.value;
@@ -31,14 +35,21 @@ const dom = (() => {
         toggle = true;
         projectInput.style.visibility = 'hidden';
         projectBtn.innerHTML = 'Create Project';
-        action(input);
+        const flash = document.createElement('span');
+        flash.className = 'flash-span';
+        flash.id = 'flashSpan';
+        if (action(input)) {
+          flash.innerText = 'Project created!';
+          flash.style.color = 'var(--success)';
+          document.getElementById('p-add-cont').appendChild(flash);
+        } else {
+          flash.innerText = 'Project exists!';
+          flash.style.color = 'var(--danger)';
+          document.getElementById('p-add-cont').appendChild(flash);
+        }
         projectInput.value = '';
         projectInput.style = '';
-        const success = document.createElement('span');
-        success.innerText = `${input} added to list!`;
-        success.className = 'success-span';
-        success.id = 'successSpan';
-        document.getElementById('p-add-cont').appendChild(success);
+        setTimeout(() => flash.remove(), 3000);
       } else {
         projectInput.style.borderColor = '#e86868';
         projectInput.style.boxShadow = 'rgba(220, 53, 69, 0.24) 0px 0px 0px 0.25rem';
@@ -47,7 +58,13 @@ const dom = (() => {
     return action;
   };
 
-  return { addProjectOption, loadProjectOptions, addProjectBtnAction };
+  const addTaskBtnAction = (action) => {
+
+  };
+
+  return {
+    dueDateMin, addProjectOption, loadProjectOptions, addProjectBtnAction, addTaskBtnAction,
+  };
 })();
 
 export default dom;
