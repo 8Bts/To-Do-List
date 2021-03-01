@@ -58,11 +58,12 @@ document.getElementById('addTaskForm').addEventListener('submit', event => {
   });
 });
 
-// Add listener for expand buttons on todos
+// Add listeners for expand buttons on todos
 const btns = Array.from(document.getElementsByClassName('btn-expand'));
 btns.forEach(btn => {
   btn.onclick = () => {
     if (btn.innerText === 'Show details') btn.innerText = 'Hide details';
     else btn.innerText = 'Show details';
   };
+  btn.onblur = () => { btn.innerText = 'Show details'; };
 });
