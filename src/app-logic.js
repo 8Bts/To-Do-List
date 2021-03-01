@@ -1,6 +1,9 @@
 /* eslint-disable linebreak-style */
+import Project from './project';
+
+/* eslint-disable linebreak-style */
 const storage = localStorage.getItem('projects')
-  ? JSON.parse(localStorage.getItem('projects'))
+  ? JSON.parse(localStorage.getItem('projects')).map(project => Project(project.title, project.tasks))
   : [];
 
 const app = (() => {
@@ -22,7 +25,7 @@ const app = (() => {
   };
 
   const addTodo = (project, todo) => {
-    if (getProject(project)) {
+    if (getProject(project.title)) {
       project.addTask(todo);
       update();
     }

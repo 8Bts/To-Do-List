@@ -10,7 +10,7 @@
   box-shadow: none;
 }
 
-.flash-span {
+.flash-span-p-input {
   position: absolute;
   left: 7%;
 }
@@ -19,4 +19,8 @@
   position: absolute;
   top: .67em;
   right: 2em;
+}
+
+.form-title-cont {
+  position: relative;
 }

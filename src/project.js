@@ -1,6 +1,6 @@
 /* eslint-disable linebreak-style */
-const Project = (title) => {
-  const tasks = [];
+const Project = (title, toDos = []) => {
+  const tasks = toDos;
 
   const addTask = (todo) => tasks.push(todo);
 
@@ -11,12 +11,14 @@ const Project = (title) => {
     return task;
   };
 
+  const getAllTasks = () => tasks;
+
   const last = () => tasks[tasks.length - 1];
 
   const find = (taskTitle) => tasks.find(element => element.title === taskTitle);
 
   return {
-    addTask, removeTask, last, find, title,
+    addTask, removeTask, getAllTasks, last, find, title, tasks,
   };
 };
 
