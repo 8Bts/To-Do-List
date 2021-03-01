@@ -9,6 +9,10 @@ const storage = localStorage.getItem('projects')
 const app = (() => {
   const update = () => localStorage.setItem('projects', JSON.stringify(storage));
 
+  const setLastSelectedProject = ({ title }) => localStorage.setItem('lastSelectedProject', title);
+
+  const getLastSelectedProject = () => localStorage.getItem('lastSelectedProject');
+
   const getAllProjects = () => storage.slice();
 
   const getProject = (title) => {
@@ -78,6 +82,8 @@ const app = (() => {
   const clearStorage = () => localStorage.clear();
 
   return {
+    setLastSelectedProject,
+    getLastSelectedProject,
     getAllProjects,
     getProject,
     addProject,

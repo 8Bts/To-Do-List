@@ -10,22 +10,35 @@ const dom = (() => {
 
   const currentProjectTitle = () => pSelect.value;
 
+  const selectProject = (title) => { pSelect.value = title; };
+
   const dueDateMin = (dateString) => {
     document.getElementById('due-date').setAttribute('min', dateString);
   };
 
-  const addTaskItem = ({ title, description }) => {
-    const lItem = ` <li class="list-group-item">
-                      <div class="card border-0">
-                        <div class="card-body">
-                          <h5 class="card-title">${title}</h5>
-                          <p class="card-text">${description}</p>
+  const addTaskItem = ({
+    id, title, description, dueDate,
+  }) => {
+    description = description || 'N/A';
+    const lItem = `<li class="list-group-item">
+                    <div class="card border-0">
+                      <div class="card-body d-flex justify-content-between">
+                        <div>
+                          <h5 class="card-title d-inline-block">${title}</h5>
+                        </div>
+                        <button class="btn-expand btn btn-link text-left" type="button" data-toggle="collapse" data-target="#collapse${id}" aria-expanded="true" aria-controls="collapse${id}">Show details</button>
+                      </div>
+                    </div>
+                    <div id="collapse${id}" class="collapse" aria-labelledby="headingOne" data-parent="#tasksList">
+                      <div class="card-body pt-0">
+                          <span class="badge badge-primary text-white">Due ${dueDate}</span>
+                          <p class="card-text mt-3">Note: ${description}</p>
                           <a href="#" class="btn btn-sm btn-outline-success">Mark as Complete</a>
                           <a href="#" class="btn btn-sm btn-outline-info">Edit</a>
                           <a href="#" class="btn btn-sm btn-outline-danger">Delete</a>
-                        </div>
                       </div>
-                    </li>`;
+                   </div>
+                  </li>`;
 
     document.getElementById('tasksList').insertAdjacentHTML('beforeend', lItem);
   };
@@ -34,6 +47,13 @@ const dom = (() => {
     tasks.forEach(task => {
       addTaskItem(task);
     });
+  };
+
+  const clearTaskList = () => {
+    const list = Array.from(document.getElementsByTagName('li'));
+    // list.concat(Array.from(document.getElementsByClassName('collapse')));
+
+    list.forEach(element => element.remove());
   };
 
   const addProjectOption = ({ title }) => {
@@ -97,6 +117,7 @@ const dom = (() => {
       $('#newTaskModal').modal('hide');
       if (flash) flash.remove();
       title.style = '';
+      window.location.reload();
     } else {
       title.focus({ preventScroll: false });
       title.style.borderColor = '#e86868';
@@ -112,10 +133,12 @@ const dom = (() => {
   };
 
   return {
+    selectProject,
     currentProjectTitle,
     dueDateMin,
     addTaskItem,
     loadTaskItems,
+    clearTaskList,
     addProjectOption,
     loadProjectOptions,
     addProjectBtnAction,
