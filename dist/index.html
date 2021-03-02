@@ -18,7 +18,7 @@
           <h2>Projects</h2>
           <select id="p-select" class="form-control mt-3"></select>
           <div id="p-add-cont" class="position-relative container mt-4 d-flex p-0 align-items-center">
-            <input id="input-project" class="form-control" type="text" placeholder="Project title">
+            <input id="input-project" class="form-control" type="text" placeholder="Project title" maxlength="24">
             <button type="submit" id="project-btn" class="btn text-info text-nowrap ps-1 pe-0">Create Project</button>
           </div>
         </div>
@@ -56,9 +56,9 @@
             <div class="form-group">
               <label for="task-priority" class="col-form-label">Priority</label>
               <select class="form-control" name="priority" id="task-priority">
-                <option class="text-info" value="1">Optional</option>
-                <option class="text-warning" selected value="2">Important</option>
-                <option class="text-danger" value="3">Urgent</option>
+                <option class="text-info" value="Optional">Optional</option>
+                <option class="text-warning" selected value="Important">Important</option>
+                <option class="text-danger" value="Urgent">Urgent</option>
               </select>
             </div>
           </form>

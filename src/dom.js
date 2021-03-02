@@ -17,25 +17,33 @@ const dom = (() => {
   };
 
   const addTaskItem = ({
-    id, title, description, dueDate,
+    id, title, description, dueDate, priority,
   }) => {
     description = description || 'N/A';
+    const badgeColor = (() => {
+      switch (priority) {
+        case 'Optional': return 'info';
+        case 'Important': return 'warning';
+        case 'Urgent': return 'danger';
+        default: return 'light';
+      }
+    })();
     const lItem = `<li class="list-group-item">
                     <div class="card border-0">
                       <div class="card-body d-flex justify-content-between">
                         <div>
                           <h5 class="card-title d-inline-block">${title}</h5>
+                          <span class="badge badge-${badgeColor} ml-4 text-white">${priority}</span>
+                          <span class="badge badge-primary text-white ml-4">Due ${dueDate}</span>
                         </div>
                         <button class="btn-expand btn btn-link text-left" type="button" data-toggle="collapse" data-target="#collapse${id}" aria-expanded="true" aria-controls="collapse${id}">Show details</button>
                       </div>
                     </div>
                     <div id="collapse${id}" class="collapse" aria-labelledby="headingOne" data-parent="#tasksList">
                       <div class="card-body pt-0">
-                          <span class="badge badge-primary text-white">Due ${dueDate}</span>
                           <p class="card-text mt-3">Note: ${description}</p>
-                          <a href="#" class="btn btn-sm btn-outline-success">Mark as Complete</a>
                           <a href="#" class="btn btn-sm btn-outline-info">Edit</a>
-                          <a href="#" class="btn btn-sm btn-outline-danger">Delete</a>
+                          <button class="btn-delete btn btn-sm btn-outline-danger" data-task-id="${id}">Delete</button>
                       </div>
                    </div>
                   </li>`;

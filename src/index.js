@@ -31,8 +31,7 @@ const s = document.getElementById('p-select');
 s.addEventListener('change', () => {
   const project = App.getProject(DOM.currentProjectTitle());
   App.setLastSelectedProject(project);
-  DOM.clearTaskList();
-  DOM.loadTaskItems(project.getAllTasks());
+  window.location.reload();
 });
 
 // Add listener for the create project button
@@ -60,10 +59,27 @@ document.getElementById('addTaskForm').addEventListener('submit', event => {
 
 // Add listeners for expand buttons on todos
 const btns = Array.from(document.getElementsByClassName('btn-expand'));
+let prev;
 btns.forEach(btn => {
   btn.onclick = () => {
-    if (btn.innerText === 'Show details') btn.innerText = 'Hide details';
-    else btn.innerText = 'Show details';
+    if (btn.innerText === 'Show details') {
+      if (prev) prev.innerText = 'Show details';
+      btn.innerText = 'Hide details';
+      prev = btn;
+    } else {
+      btn.innerText = 'Show details';
+    }
   };
-  btn.onblur = () => { btn.innerText = 'Show details'; };
+});
+
+// Add listener for delete task button
+
+const dButtons = Array.from(document.getElementsByClassName('btn-delete'));
+
+dButtons.forEach(btn => {
+  btn.onclick = () => {
+    console.log(btn.getAttribute('data-task-id'));
+    App.deleteTodo(App.getProject(DOM.currentProjectTitle()), btn.getAttribute('data-task-id'));
+    window.location.reload();
+  };
 });

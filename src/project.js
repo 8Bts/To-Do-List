@@ -5,10 +5,11 @@ const Project = (title, toDos = []) => {
   const addTask = (todo) => tasks.push(todo);
 
   const removeTask = (id) => {
-    const task = tasks.find(element => element.id === id);
-    if (task) tasks.splice(id, 1);
-    else return null;
-    return task;
+    const task = tasks.find(element => element.id === Number(id));
+    const idx = tasks.indexOf(task);
+    if (task) tasks.splice(idx, 1);
+    else return false;
+    return true;
   };
 
   const getAllTasks = () => tasks;

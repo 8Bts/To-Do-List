@@ -36,14 +36,6 @@ const app = (() => {
     return todo;
   };
 
-  const markAsComplete = (todo) => {
-    if (todo) {
-      todo.completed = true;
-      update();
-    }
-    return todo;
-  };
-
   const editTodo = (todo, newTodo) => {
     if (todo) {
       Object.assign(todo, newTodo);
@@ -88,7 +80,6 @@ const app = (() => {
     getProject,
     addProject,
     addTodo,
-    markAsComplete,
     editTodo,
     setPriority,
     deleteProject,
