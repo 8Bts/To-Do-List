@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Do List</title>
+</head>
+<body>
+  <nav class="navbar navbar-light bg-light border">
+    <a class="navbar-brand ms-4" href="#">
+      To Do List
+    </a>
+  </nav>
+  <main>
+    <div class="container mt-4">
+      <div class="row min-height">
+        <div class="col-3 border text-center">
+          <h2>Projects</h2>
+          <select id="p-select" class="form-control mt-3"></select>
+          <div id="p-add-cont" class="position-relative container mt-4 d-flex p-0 align-items-center">
+            <input id="input-project" class="form-control" type="text" placeholder="Project title" maxlength="24">
+            <button type="submit" id="project-btn" class="btn text-info text-nowrap ps-1 pe-0">Create Project</button>
+          </div>
+        </div>
+        <div class="col-9 border position-relative">
+          <button data-toggle="modal" data-target="#newTaskModal" id="addTaskBtn" class="btn btn-sm btn-success">New Task</button>
+          <h2 class="text-center m-0">Tasks</h2>
+          <ul id="tasksList" class="list-group p-3 accordion"></ul>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div class="modal fade" id="newTaskModal" tabindex="-1" role="dialog" aria-labelledby="newTaskModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalHeader">New task</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="addTaskForm"> 
+            <div class="form-title-cont form-group">
+              <label for="task-title" class="col-form-label">Title *</label>
+              <input id="request" type="hidden" value="create">
+              <input id="taskId" type="hidden">
+              <input type="text" maxlength="32" class="form-control" id="task-title" required>
+            </div>
+            <div class="form-group">
+              <label for="task-description" class="col-form-label">Note (optional)</label>
+              <textarea maxlength="128" class="form-control" id="task-description"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="due-date" class="col-form-label">Due-date *</label>
+              <input type="date" class="form-control date" id="due-date" required>
+            </div>
+            <div class="form-group">
+              <label for="task-priority" class="col-form-label">Priority</label>
+              <select class="form-control" name="priority" id="task-priority">
+                <option class="text-info" value="Optional">Optional</option>
+                <option class="text-warning" selected value="Important">Important</option>
+                <option class="text-danger" value="Urgent">Urgent</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <input value="Add" type="submit" form="addTaskForm" class="btn btn-primary">
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./main.js"></script>
+</body>
+</html>
