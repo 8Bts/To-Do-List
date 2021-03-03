@@ -17,7 +17,7 @@ To-Do List app can be useful to create notes about tasks with details. You can a
 
 ## Live Demo
 
-<a href="https://rawcdn.githack.com/8Bts/Restaurant-Page/fb2b48791dbad5ee5554bb14b452e7030ffaf1ea/dist/index.html#" target="_blank">Live version</a>
+[Githack](https://raw.githack.com/8Bts/To-Do-List/main-app/dist/index.html)
 
 ## Getting Started
 

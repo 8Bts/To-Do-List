@@ -1,6 +1,6 @@
 .min-height { min-height: 86vh; }
 
-#input-project { 
+#input-project {
   width: 100%;
   visibility: hidden;
 }
@@ -17,7 +17,7 @@
 
 #addTaskBtn {
   position: absolute;
-  top: .67em;
+  top: 0.67em;
   right: 2em;
 }
 
