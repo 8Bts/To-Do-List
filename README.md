@@ -1,17 +1,17 @@
-# Restaurant Page
+# To-Do List
 
-Simple restaurant page focused on implementing useful web development features like `npm`, `webpack`, and `ES6 Modules`. Almost all HTML code is provided by the script. Assets are bundled and linked using Webpack.
+To-Do List app can be useful to create notes about tasks with details. You can also create new projects and add new tasks associated with that project. If you want to delete, edit the todos, or see its description, you can expand them by clicking "Show details".
 
 ## Application Screenshot
-![screenshot](src/images/screenshot.png)
+![screenshot](screenshots/screenshot.png)
 
 ## Built With
 
 - HTML,
 - CSS,
 - ES6,
-- Bootsrap 4,
-- Webpack 4.44.2
+- Bootsrap 4.6.0,
+- Webpack 5.24.2
 - VS Code
 - Firefox Developer Edition
 
@@ -23,7 +23,7 @@ Simple restaurant page focused on implementing useful web development features l
 
   If you want to try this application locally, follow the steps below:
 
-  1. Clone the project using `git clone https://github.com/8Bts/Restaurant-Page.git` command.
+  1. Clone the project using `git clone https://github.com/8Bts/To-Do-List` command.
 
   2. run `npm install`.
 
@@ -43,7 +43,7 @@ Simple restaurant page focused on implementing useful web development features l
 
 Contributions, issues and feature requests are welcome!
 
-Feel free to check the <a href="https://github.com/8Bts/Restaurant-Page/issues" target="_blank">issues page</a>.
+Feel free to check the <a href="https://github.com/8Bts/To-Do-List/issues" target="_blank">issues page</a>.
 
 ## Show your support
 
@@ -51,11 +51,12 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
+- [Microverse - Web Development School](https://www.microverse.org/)
 - [MDN WEB DOCS](https://developer.mozilla.org/)
 - <a href="https://www.w3schools.com/" target="_blank">w3schools.com</a> 
 - <a href="https://www.theodinproject.com/" target="_blank">The Odin Project</a>
 - <a href="https://www.stackoverflow.com/" target="_blank">Stackoverflow</a>
-- Photo by <a href="https://unsplash.com/@ninjason?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Jason Leung</a> on <a href="https://unsplash.com/s/photos/restaurant?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
+
 
 
 
