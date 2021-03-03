@@ -15,10 +15,6 @@ const app = (() => {
 
   const getAllProjects = () => storage.slice();
 
-  const getProject = (title) => {
-    const project = storage.find(element => element.title === title);
-    return project || null;
-  };
 
   const addProject = (project) => {
     if (project) {
@@ -26,6 +22,11 @@ const app = (() => {
       update();
     }
     return project;
+  };
+
+  const getProject = (title) => {
+    const project = storage.find(element => element.title === title);
+    return project || null;
   };
 
   const addTodo = (project, todo) => {
@@ -36,13 +37,17 @@ const app = (() => {
     return todo;
   };
 
-  const editTodo = (todo, newTodo) => {
-    if (todo) {
-      Object.assign(todo, newTodo);
-      update();
+
+  const editTodo = (project, oldTodoId, newTodo) => {
+    if (getProject(project.title)) {
+      if (project.editTask(oldTodoId, newTodo)) {
+        update();
+        return true;
+      }
     }
-    return newTodo;
+    return false;
   };
+
 
   const setPriority = (todo, value) => {
     if (todo) {

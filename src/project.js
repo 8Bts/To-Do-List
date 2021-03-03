@@ -12,14 +12,24 @@ const Project = (title, toDos = []) => {
     return true;
   };
 
+  const getTask = (id) => tasks.find(element => element.id === Number(id));
+
+  const editTask = (oldTaskId, newTask) => {
+    const idx = tasks.indexOf(getTask(oldTaskId));
+    if (idx !== -1) tasks[idx] = newTask;
+    else return false;
+    return true;
+  };
+
   const getAllTasks = () => tasks;
 
   const last = () => tasks[tasks.length - 1];
 
   const find = (taskTitle) => tasks.find(element => element.title === taskTitle);
 
+
   return {
-    addTask, removeTask, getAllTasks, last, find, title, tasks,
+    addTask, removeTask, getAllTasks, last, find, getTask, editTask, title, tasks,
   };
 };
 

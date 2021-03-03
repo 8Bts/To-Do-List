@@ -46,15 +46,25 @@ document.getElementById('project-btn').onclick = DOM.addProjectBtnAction.bind(DO
 // Add listener for the add new task form
 document.getElementById('addTaskForm').addEventListener('submit', event => {
   event.preventDefault();
-  DOM.addTaskBtnAction((title, description, dueDate, priority) => {
-    const currentProject = App.getProject(DOM.currentProjectTitle());
-    if (currentProject.find(title)) return false;
-    const id = currentProject.last() ? currentProject.last().id + 1 : 0;
-    const toDo = ToDo(id, title, description, format(dueDate, 'do MMMM yyyy'), priority);
-    App.addTodo(currentProject, toDo);
-    DOM.addTaskItem(toDo);
-    return true;
-  });
+
+  if (document.getElementById('request').value === 'create') {
+    DOM.addTaskBtnAction((title, description, dueDate, priority) => {
+      const currentProject = App.getProject(DOM.currentProjectTitle());
+      if (currentProject.find(title)) return false;
+      const id = currentProject.last() ? currentProject.last().id + 1 : 0;
+      const toDo = ToDo(id, title, description, format(dueDate, 'yyyy-MM-dd'), priority);
+      App.addTodo(currentProject, toDo);
+      DOM.addTaskItem(toDo);
+      return true;
+    });
+  } else {
+    DOM.editTaskBtnAction((id, title, description, dueDate, priority) => {
+      const toDo = ToDo(id, title, description, format(dueDate, 'yyyy-MM-dd'), priority);
+      const currentProject = App.getProject(DOM.currentProjectTitle());
+      App.editTodo(currentProject, id, toDo);
+      window.location.reload();
+    });
+  }
 });
 
 // Add listeners for expand buttons on todos
@@ -73,13 +83,20 @@ btns.forEach(btn => {
 });
 
 // Add listener for delete task button
-
 const dButtons = Array.from(document.getElementsByClassName('btn-delete'));
 
 dButtons.forEach(btn => {
   btn.onclick = () => {
-    console.log(btn.getAttribute('data-task-id'));
     App.deleteTodo(App.getProject(DOM.currentProjectTitle()), btn.getAttribute('data-task-id'));
-    window.location.reload();
+    DOM.deleteTask(btn.getAttribute('data-task-id'));
   };
+});
+
+// Add listener for edit task button
+
+const eButtons = Array.from(document.getElementsByClassName('btn-edit'));
+
+eButtons.forEach(btn => {
+  const task = App.getProject(DOM.currentProjectTitle()).getTask(btn.getAttribute('data-task-id'));
+  btn.onclick = () => DOM.editTaskBtnPrepare(task);
 });

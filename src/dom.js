@@ -1,6 +1,7 @@
 /* eslint-disable linebreak-style */
 
 import $ from 'jquery';
+import { format } from 'date-fns';
 
 const dom = (() => {
   let toggle = true;
@@ -28,13 +29,13 @@ const dom = (() => {
         default: return 'light';
       }
     })();
-    const lItem = `<li class="list-group-item">
+    const lItem = `<li id="task${id}" class="list-group-item">
                     <div class="card border-0">
                       <div class="card-body d-flex justify-content-between">
                         <div>
                           <h5 class="card-title d-inline-block">${title}</h5>
                           <span class="badge badge-${badgeColor} ml-4 text-white">${priority}</span>
-                          <span class="badge badge-primary text-white ml-4">Due ${dueDate}</span>
+                          <span class="badge badge-primary text-white ml-4">Due ${format(new Date(dueDate.split('-')), 'do MMM yyyy')}</span>
                         </div>
                         <button class="btn-expand btn btn-link text-left" type="button" data-toggle="collapse" data-target="#collapse${id}" aria-expanded="true" aria-controls="collapse${id}">Show details</button>
                       </div>
@@ -42,7 +43,7 @@ const dom = (() => {
                     <div id="collapse${id}" class="collapse" aria-labelledby="headingOne" data-parent="#tasksList">
                       <div class="card-body pt-0">
                           <p class="card-text mt-3">Note: ${description}</p>
-                          <a href="#" class="btn btn-sm btn-outline-info">Edit</a>
+                          <button class="btn-edit btn btn-sm btn-outline-info" data-task-id="${id}">Edit</button>
                           <button class="btn-delete btn btn-sm btn-outline-danger" data-task-id="${id}">Delete</button>
                       </div>
                    </div>
@@ -55,6 +56,11 @@ const dom = (() => {
     tasks.forEach(task => {
       addTaskItem(task);
     });
+  };
+
+
+  const deleteTask = (id) => {
+    document.getElementById(`task${id}`).remove();
   };
 
   const clearTaskList = () => {
@@ -140,17 +146,44 @@ const dom = (() => {
     }
   };
 
+  const editTaskBtnAction = (action) => {
+    const title = document.getElementById('task-title');
+    const description = document.getElementById('task-description');
+    const dueDate = new Date(document.getElementById('due-date').value.split('-'));
+    const priority = document.getElementById('task-priority');
+    const id = document.getElementById('taskId').value;
+    action(id, title.value, description.value, dueDate, priority.value);
+    document.getElementById('request').value = 'create';
+    document.getElementById('taskId').value = '';
+  };
+
+  const editTaskBtnPrepare = ({
+    id, title, description, dueDate, priority,
+  }) => {
+    document.getElementById('task-title').value = title;
+    document.getElementById('task-description').value = description;
+    document.getElementById('due-date').value = dueDate;
+    document.getElementById('task-priority').value = priority;
+    document.getElementById('request').value = 'edit';
+    document.getElementById('taskId').value = id;
+    document.getElementById('modalHeader').innerText = 'Edit task';
+    $('#newTaskModal').modal('show');
+  };
+
   return {
     selectProject,
     currentProjectTitle,
     dueDateMin,
     addTaskItem,
     loadTaskItems,
+    deleteTask,
     clearTaskList,
     addProjectOption,
     loadProjectOptions,
     addProjectBtnAction,
     addTaskBtnAction,
+    editTaskBtnAction,
+    editTaskBtnPrepare,
   };
 })();
 
