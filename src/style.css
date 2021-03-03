@@ -1,0 +1,26 @@
+.min-height { min-height: 86vh; }
+
+#input-project {
+  width: 100%;
+  visibility: hidden;
+}
+
+#project-btn:focus {
+  outline-color: transparent;
+  box-shadow: none;
+}
+
+.flash-span-p-input {
+  position: absolute;
+  left: 7%;
+}
+
+#addTaskBtn {
+  position: absolute;
+  top: 0.67em;
+  right: 2em;
+}
+
+.form-title-cont {
+  position: relative;
+}
